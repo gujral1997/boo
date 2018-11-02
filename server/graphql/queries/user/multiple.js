@@ -1,17 +1,16 @@
 import {
-    GraphQLList
+	GraphQLList
 } from 'graphql'
-
-import { userType } from '../../types'
-import UserModel from '../../../models/user'
+import { userType } from '../../types/user'
+import userModel from '../../../models/user'
 
 export default {
-    type: new GraphQLList(userType),
-    resolve(root, params) {
-        const users = UserModel.find().exec()
-        if(!users) {
-            throw new Error('Error while fetching users..')
-        }
-        return users
-    }
+	type: new GraphQLList(userType),
+	resolve() {
+		const users = userModel.find().exec()
+		if (!users) {
+			throw new Error('Error getting users')
+		}
+		return users
+	}
 }

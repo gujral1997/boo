@@ -2,7 +2,7 @@ import express from 'express'
 import mongoose from 'mongoose'
 import graphqlHTTP from 'express-graphql' 
 
-// import schema from './graphql'
+import schema from './graphql'
 
 const app = express()
 
@@ -17,11 +17,11 @@ app.get('/',(req, res) => {
 
 // GraphQL API endpoint
 
-// app.use('graphql', graphqlHTTP(() => ({
-//     schema,
-//     graphiql: true,
-//     pretty: true
-// })))
+app.use('/graphql', graphqlHTTP(() => ({
+    schema,
+    graphiql: true,
+    pretty: true
+})))
 
 app.listen(3000, ()=> {
     console.log('GraphQL API is listening at 3000')
